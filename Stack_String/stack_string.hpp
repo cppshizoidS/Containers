@@ -1,5 +1,5 @@
-#ifndef TOOLS_SIMPLE_STACK_STRING_HPP
-#define TOOLS_SIMPLE_STACK_STRING_HPP
+#ifndef TOOLS_STACK_STRING_HPP
+#define TOOLS_STACK_STRING_HPP
 
 #include <array>
 #include <cstddef>
