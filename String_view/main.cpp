@@ -123,6 +123,12 @@ int main() {
   // check if the string contains the character 'x'
   bool containsX = myView.contains('x');
   std::cout << containsX << std::endl;
+  
+  msv::my_string_view strView("    hello world    ");
+  std::cout << "original string: " << strView.data() << "" << std::endl;
+  //strip method
+  msv::my_string_view stripString = strView.strip();
+  std::cout << "stripped string: " << stripString.data() << "" << std::endl;
 
   return 0;
 }
