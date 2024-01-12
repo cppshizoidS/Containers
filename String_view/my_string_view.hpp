@@ -144,6 +144,19 @@ class my_string_view {
     }
     return false;
   }
+
+  constexpr my_string_view strip() const noexcept {
+    size_type start = 0;
+    size_type end = m_length;
+
+    while (start < m_length && std::isspace(m_data[start])) {
+      ++start;
+    }
+    while (end > start && std::isspace(m_data[end - 1])) {
+      --end;
+    }
+    return substr(start, end - start);
+    }
 };
 
 using string_view = my_string_view<char>;
