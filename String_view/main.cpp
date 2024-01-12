@@ -87,7 +87,7 @@ int main() {
   size_t last_index = sv.rfind(ch);
   //rfind for substring
   msv::my_string_view strv("Hello, World!");
-  msv::my_string_view pattern("World");
+  msv::my_string_view pattern("W");
   std::cout << "rfind result: " << strv.rfind(pattern) << std::endl;
 
   if (last_index != msv::string_view::npos) {
