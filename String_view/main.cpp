@@ -77,8 +77,8 @@ int main() {
   [[maybe_unused]] msv::my_string_view<char> view(s);
   //  range-based for loop to iterate
   std::cout << "Characters in the view:" << std::endl;
-  for (auto it = sv2.begin(); it != sv2.end(); ++it) {
-    std::cout << *it;
+  for (char it : sv2) {
+    std::cout << it;
   }
   std::cout << std::endl;
   //rfind for symbol
@@ -123,12 +123,19 @@ int main() {
   // check if the string contains the character 'x'
   bool containsX = myView.contains('x');
   std::cout << containsX << std::endl;
-  
+
   msv::my_string_view strView("    hello world    ");
   std::cout << "original string: " << strView.data() << "" << std::endl;
   //strip method
   msv::my_string_view stripString = strView.strip();
   std::cout << "stripped string: " << stripString.data() << "" << std::endl;
+  //reverse iterator
+  msv::string_view svRev("Hello");
+  std::cout << "Original string view: " << svRev.data() << std::endl;
+  std::cout << "Reversed string view: ";
+  for (auto it = svRev.rbegin(); it != svRev.rend(); ++it) {
+    std::cout << *it;
+  }
 
   return 0;
 }
