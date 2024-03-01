@@ -1,12 +1,10 @@
 #ifndef MY_LIST_HPP
 #define MY_LIST_HPP
 
-
 #include <cstddef>
 #include <utility>
 
 namespace my_list {
-
 
 template <typename T> class ListNode {
 public:
@@ -23,14 +21,14 @@ public:
   ListNode<T> *tail;
   size_t size;
 
-  template <typename U>
-  void swap(T &a, T &b) {
+  template <typename U> void swap(T &a, T &b) {
     T temp = std::move(a);
     a = std::move(b);
     b = std::move(temp);
-}
+  }
   void sort(ListNode<T> *left, ListNode<T> *right) {
-    if (left != nullptr && right != nullptr && left != right && left->prev != right) {
+    if (left != nullptr && right != nullptr && left != right &&
+        left->prev != right) {
       ListNode<T> *pivot = partition(left, right);
       sort(left, pivot);
       sort(pivot->next, right);
@@ -53,7 +51,6 @@ public:
 
     return i;
   }
-
 
   MyList() : head(nullptr), tail(nullptr), size(0) {}
 
@@ -114,7 +111,6 @@ public:
     }
     size--;
   }
-  
 
   size_t getSize() const { return size; }
 
@@ -180,18 +176,15 @@ public:
     }
   }
 
-template <typename Predicate>
-void erase_if(Predicate pred) {
+  template <typename Predicate> void erase_if(Predicate pred) {
     for (auto it = begin(); it != end();) {
-        if (pred(*it)) {
-            it = erase(it);
-        } else {
-            ++it;
-        }
+      if (pred(*it)) {
+        it = erase(it);
+      } else {
+        ++it;
+      }
     }
-}
-
-
+  }
 };
-}
+} // namespace my_list
 #endif // MY_LIST_HPP
