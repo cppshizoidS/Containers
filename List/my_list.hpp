@@ -4,10 +4,17 @@
 #include <cstddef>
 #include <utility>
 
+template <typename T>
+void swap(T &a, T &b) {
+  T temp = std::move(a);
+  a = std::move(b);
+  b = std::move(temp);
+}
 namespace my_list {
 
-template <typename T> class ListNode {
-public:
+template <typename T>
+class ListNode {
+ public:
   T data;
   ListNode *prev;
   ListNode *next;
@@ -15,17 +22,13 @@ public:
   ListNode(const T &value) : data(value), prev(nullptr), next(nullptr) {}
 };
 
-template <typename T> class MyList {
-public:
+template <typename T>
+class MyList {
+ public:
   ListNode<T> *head;
   ListNode<T> *tail;
   size_t size;
 
-  template <typename U> void swap(T &a, T &b) {
-    T temp = std::move(a);
-    a = std::move(b);
-    b = std::move(temp);
-  }
   void sort(ListNode<T> *left, ListNode<T> *right) {
     if (left != nullptr && right != nullptr && left != right &&
         left->prev != right) {
@@ -98,7 +101,7 @@ public:
 
   void pop_front() {
     if (size == 0) {
-      return; // empty list
+      return;  // empty list
     }
     if (size == 1) {
       delete head;
@@ -121,10 +124,10 @@ public:
   }
 
   class Iterator {
-  private:
+   private:
     ListNode<T> *current;
 
-  public:
+   public:
     Iterator(ListNode<T> *node) : current(node) {}
 
     T &operator*() const { return current->data; }
@@ -176,7 +179,8 @@ public:
     }
   }
 
-  template <typename Predicate> void erase_if(Predicate pred) {
+  template <typename Predicate>
+  void erase_if(Predicate pred) {
     for (auto it = begin(); it != end();) {
       if (pred(*it)) {
         it = erase(it);
@@ -186,5 +190,5 @@ public:
     }
   }
 };
-} // namespace my_list
-#endif // MY_LIST_HPP
+}  // namespace my_list
+#endif  // MY_LIST_HPP
